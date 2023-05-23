@@ -34,6 +34,8 @@ def main():
     model = st.file_uploader('The untrained model goes here',type='pkl')
     
     train = st.file_uploader('The data on which you want to train goes here',type='csv')
+    train = pd.read_csv(train)
+    train
     target = st.text_input('Target column', 'Status')
     st.write('The currenct target is ',target)
     
