@@ -34,12 +34,13 @@ def main():
     model = st.file_uploader('The untrained model goes here',type='pkl')
     
     train = st.file_uploader('The data on which you want to train goes here',type='csv')
-    train = pd.read_csv(train)
-    train
+    
     target = st.text_input('Target column', 'Status')
     st.write('The currenct target is ',target)
     
     if st.button("Fit the model"):
+        train = pd.read_csv(train)
+        train
         with st.spinner("Training the model... Please wait."):
             model,trainscore,testscore = train_model(model,train,target)
         st.write('train score:', trainscore)
