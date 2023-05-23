@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.metrics import f1_score
+from sklearn.model_selection import train_test_split
 import sklearn
 import pickle
 
@@ -9,7 +10,7 @@ import pickle
 def train_model(model,train,target):
     X = train.drop(target,axis=1)
     y = train[target]
-    X_train,X_test,y_train,y_test= sklearn.model_selection.train_test_split(X,
+    X_train,X_test,y_train,y_test= train_test_split(X,
     y,test_size=0.3,random_state=2)
     model = model.fit(X_train,y_train)
     tr_pred = model.predict(X_train)
