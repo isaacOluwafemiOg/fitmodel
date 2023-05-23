@@ -37,21 +37,22 @@ def main():
     target = st.text_input('Target column', 'Status')
     st.write('The currenct target is ',target)
     
-    with st.spinner("Training the model... Please wait."):
-        model,trainscore,testscore = train_model(model,train,target)
-    st.write('train score:', trainscore)
-    st.write('test score:', testscore)
+    if st.button("Fit the model"):
+        with st.spinner("Training the model... Please wait."):
+            model,trainscore,testscore = train_model(model,train,target)
+        st.write('train score:', trainscore)
+        st.write('test score:', testscore)
 
-    model_filename = "b_trained_model.pkl"
-    with open(model_filename, "wb") as f:
-        pickle.dump(model, f)
+        model_filename = "trained_model.pkl"
+        with open(model_filename, "wb") as f:
+            pickle.dump(model, f)
 
-    # Provide a download link for the trained model
-    st.download_button(
-        label="Download Trained Model",
-        data=open(model_filename, "rb").read(),
-        file_name=model_filename
-    )
+        # Provide a download link for the trained model
+        st.download_button(
+            label="Download Trained Model",
+            data=open(model_filename, "rb").read(),
+            file_name=model_filename
+        )
     
         
 
