@@ -42,7 +42,7 @@ def main():
     if st.button("Fit the model"):
         train = pd.read_csv(train)
         train
-        model = pickle.load(open(model,'rb'))
+        model = pickle.load(model)
         with st.spinner("Training the model... Please wait."):
             model,trainscore,testscore = train_model(model,train,target)
         st.write('train score:', trainscore)
